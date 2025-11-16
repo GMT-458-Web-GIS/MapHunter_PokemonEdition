@@ -4,6 +4,8 @@
 **Author:** Nur Sıla Özkan
 
 ---
+![geogame](https://github.com/user-attachments/assets/877bedaf-3a8f-4df6-a753-33cde736bd76)
+
 
 ### 1️⃣ Project Overview
 
