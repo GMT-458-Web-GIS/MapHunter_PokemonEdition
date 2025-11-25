@@ -4,14 +4,13 @@
 **Author:** Nur Sıla Özkan
 
 ---
-![geogame](https://github.com/user-attachments/assets/877bedaf-3a8f-4df6-a753-33cde736bd76)
 
 
 # 📡 MapHunter: Signal Ops
 
 **MapHunter** is a location-based spatial game built with **Leaflet.js** and **Turf.js**. Players take on the role of a signal operator, navigating a digital map to locate and secure hidden targets using a proximity sensor system before time runs out.
 
-🚀 **Live Demo:** [Play MapHunter](https://gmt-458-web-gis.github.io/geogame-nursla/)
+🚀 **Live Demo:** [Play MapHunter](https://gmt-458-web-gis.github.io/MapHunter_nursla/)
 
 ---
 
@@ -68,7 +67,8 @@ Not all targets are visible at once!
     - 🔴 **Hard:** High score, but they flee quickly (10s lifespan)!
 - **Responsive UI:** Works on desktop with a specialized HUD.
 
-
+---
+![geogame](https://github.com/user-attachments/assets/877bedaf-3a8f-4df6-a753-33cde736bd76)
 ---
 
 
@@ -76,7 +76,7 @@ Not all targets are visible at once!
 
 1. **Clone the repository**
    ```bash
-   git clone [https://gmt-458-web-gis.github.io/MapHunter_nursla/](https://gmt-458-web-gis.github.io/MapHunter_nursla/)
+   git clone (https://gmt-458-web-gis.github.io/MapHunter_nursla/)
 
 
 
