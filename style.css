@@ -193,7 +193,7 @@ button:active {
     backdrop-filter: blur(10px);
 }
 
-/* Score ve timer ıcons(CSS Pseudo-element) */
+/* Score and timer ıcons(CSS Pseudo-element) */
 #score::before { content: "⭐"; }
 #timer::before { content: "⏱️"; }
 
@@ -445,4 +445,91 @@ body.dark-mode .leaflet-control-layers {
 
 body.dark-mode .leaflet-control-layers-expanded {
     background: rgba(30, 35, 45, 0.95) !important;
+}
+
+/* Hide mobile controls by default (for Desktop) */
+#mobile-controls {
+    display: none;
+}
+
+/* Rules only for screens smaller than 768px (Tablet/Mobile) */
+@media (max-width: 768px) {
+    
+   
+    #mobile-controls {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9999;
+        gap: 5px;
+    }
+
+    .control-row {
+        display: flex;
+        gap: 15px;
+    }
+
+    .d-pad {
+        width: 60px;
+        height: 60px;
+        background: rgba(255, 255, 255, 0.5);
+        border: 2px solid white;
+        border-radius: 50%;
+        font-size: 24px;
+        color: #333;
+        backdrop-filter: blur(4px);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        touch-action: manipulation; 
+    }
+
+    .d-pad:active {
+        background: var(--primary);
+        color: white;
+        transform: scale(0.95);
+    }
+
+    #sensor-panel {
+        top: auto;       
+        bottom: 180px;    
+        right: 10px;
+        width: 140px;     
+        padding: 10px;
+        transform: none;  
+    }
+
+    #nearest-distance {
+        font-size: 20px; 
+    }
+
+    .sensor-title {
+        font-size: 10px;
+    }
+
+
+    #top-bar {
+        width: 95%;
+        top: 10px;
+    }
+    
+    #top-bar div {
+        padding: 5px 15px;
+        font-size: 16px;
+    }
+
+
+    #map-info {
+        display: none; 
+    }
+    
+    .rules-box {
+        display: none; 
+    }
+    
+    .card-content h1 {
+        font-size: 28px;
+    }
 }

@@ -12,7 +12,7 @@ const START_LAT = CENTER_LAT;
 const START_LON = CENTER_LON;
 
 const TARGET_SCORE = 400; 
-const MIN_DISTANCE_METERS = 200; 
+const MIN_DISTANCE_METERS = 30; 
 
 let player = {lat: START_LAT, lon: START_LON};
 let score = 0;
@@ -46,14 +46,15 @@ const darkLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/dar
 });
 
 const map = L.map('map', {
-    zoomControl: false, 
+    zoomControl: false,
+    doubleClickZoom: false, 
     layers: [cleanLayer] 
 }).setView([player.lat, player.lon], 14);
 
 // layer controls
 const baseMaps = {
     "☀️ Day Mode (Plain)": cleanLayer, 
-    "🗺️ Standart": osmLayer,
+    "🗺️ Standard": osmLayer,
     "🛰️ Satellite": satelliteLayer,
     "🌙 Night Mode": darkLayer 
 };
@@ -369,3 +370,62 @@ function endGame(isClear) {
     }
     gameOverScreen.style.display = "block";
 }
+
+// mobile integration
+
+function movePlayer(dx, dy) {
+    if(!gameActive) return; 
+
+    let newLat = player.lat + dy;
+    let newLon = player.lon + dx;
+
+    
+    if (newLat >= GAME_BOUNDS.minLat && newLat <= GAME_BOUNDS.maxLat &&
+        newLon >= GAME_BOUNDS.minLon && newLon <= GAME_BOUNDS.maxLon) {
+        
+        player.lat = newLat;
+        player.lon = newLon;
+        playerMarker.setLatLng([player.lat, player.lon]);
+        map.setView([player.lat, player.lon]); 
+
+        if(playerMarker._icon) {
+            playerMarker._icon.classList.add("player-walk");
+            setTimeout(() => playerMarker._icon.classList.remove("player-walk"), 200);
+        }
+        updateSensor();
+    }
+}
+
+
+document.getElementById('btn-up').addEventListener('click', () => movePlayer(0, step));
+document.getElementById('btn-down').addEventListener('click', () => movePlayer(0, -step));
+document.getElementById('btn-left').addEventListener('click', () => movePlayer(-step, 0));
+document.getElementById('btn-right').addEventListener('click', () => movePlayer(step, 0));
+
+
+let moveInterval;
+const addHoldEvent = (btnId, dx, dy) => {
+    const btn = document.getElementById(btnId);
+    
+    const startMove = (e) => {
+        e.preventDefault(); 
+        movePlayer(dx, dy);
+        moveInterval = setInterval(() => movePlayer(dx, dy), 100);
+    };
+    
+    const stopMove = () => {
+        clearInterval(moveInterval);
+    };
+
+    btn.addEventListener('touchstart', startMove, {passive: false});
+    btn.addEventListener('touchend', stopMove);
+    btn.addEventListener('mousedown', startMove);
+    btn.addEventListener('mouseup', stopMove);
+    btn.addEventListener('mouseleave', stopMove);
+};
+
+
+addHoldEvent('btn-up', 0, step);
+addHoldEvent('btn-down', 0, -step);
+addHoldEvent('btn-left', -step, 0);
+addHoldEvent('btn-right', step, 0);
