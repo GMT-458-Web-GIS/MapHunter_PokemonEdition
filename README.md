@@ -11,7 +11,8 @@
 **MapHunter** is a location-based spatial game built with **Leaflet.js** and **Turf.js**. Players take on the role of a signal operator, navigating a digital map to locate and secure hidden targets using a proximity sensor system before time runs out.
 
 🚀 **Live Demo:** [Play MapHunter](https://gmt-458-web-gis.github.io/MapHunter_nursla/)
-
+---
+<img width="688" height="836" alt="image" src="https://github.com/user-attachments/assets/11b64746-1410-4777-b360-907cdd1bd794" />
 ---
 
 ## 🎮 Game Mechanics
