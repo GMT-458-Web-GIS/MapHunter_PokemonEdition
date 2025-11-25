@@ -75,20 +75,8 @@ Not all targets are visible at once!
 ---
 
 
-## 📦 Play 
-
-1. **Clone the repository**
+ **Clone the repository**
    ```bash
    git clone (https://gmt-458-web-gis.github.io/MapHunter_nursla/)
 
-
-
-
-
-
-
-.
-.
-.
-(Soon)
 ---
