@@ -7,7 +7,7 @@
 
 **MapHunter** is a location-based spatial game built with **Leaflet.js** and **Turf.js**. Players take on the role of a Pokémon Trainer, navigating a digital map to track, locate, and catch Pokémon using a proximity sensor system before time runs out.
 
-🚀 **Live Demo:** [Play -> MapHunter](https://gmt-458-web-gis.github.io/MapHunter_nursla/)
+🚀 **Live Demo:** [Play 🎮 MapHunter](https://gmt-458-web-gis.github.io/MapHunter_PokemonEdition/)
 
 ---
 
