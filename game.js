@@ -178,7 +178,7 @@ function updateSensor() {
     }
 }
 
-// DIFFICULTY SETTINGS
+// SETTINGS
 const DIFFICULTY_TYPES = {
     EASY: { 
         id: 'easy', 
@@ -195,7 +195,7 @@ const DIFFICULTY_TYPES = {
         name: "Charmander", 
         score: 50, 
         icon: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png", 
-        minZ: 15, 
+        minZ: 14, 
         maxZ: 18, 
         lifespan: 20000, 
         color: "glow-orange" 
@@ -214,10 +214,12 @@ const DIFFICULTY_TYPES = {
 
 function getSafeLocation() {
     let attempts = 0;
+    const PADDING = 0.002; 
     while(attempts < 50) {
         attempts++;
-        const rLat = GAME_BOUNDS.minLat + Math.random() * (GAME_BOUNDS.maxLat - GAME_BOUNDS.minLat);
-        const rLon = GAME_BOUNDS.minLon + Math.random() * (GAME_BOUNDS.maxLon - GAME_BOUNDS.minLon);
+        
+        const rLat = (GAME_BOUNDS.minLat + PADDING) + Math.random() * ((GAME_BOUNDS.maxLat - PADDING) - (GAME_BOUNDS.minLat + PADDING));
+        const rLon = (GAME_BOUNDS.minLon + PADDING) + Math.random() * ((GAME_BOUNDS.maxLon - PADDING) - (GAME_BOUNDS.minLon + PADDING));
         
         const distToPlayer = turf.distance(turf.point([player.lon, player.lat]), turf.point([rLon, rLat]), {units: 'meters'});
         if (distToPlayer < 50) continue;
@@ -231,9 +233,10 @@ function getSafeLocation() {
 
         if (!tooClose) return {lat: rLat, lon: rLon};
     }
+    
     return {
-        lat: GAME_BOUNDS.minLat + Math.random() * (GAME_BOUNDS.maxLat - GAME_BOUNDS.minLat),
-        lon: GAME_BOUNDS.minLon + Math.random() * (GAME_BOUNDS.maxLon - GAME_BOUNDS.minLon)
+        lat: CENTER_LAT + (Math.random() * 0.001),
+        lon: CENTER_LON + (Math.random() * 0.001)
     };
 }
 
@@ -316,8 +319,8 @@ function spawnCreature(type) {
 
 function initGame() {
     activeCreatures.clear();
-    for(let i=0; i<4; i++) spawnCreature(DIFFICULTY_TYPES.EASY);
-    for(let i=0; i<2; i++) spawnCreature(DIFFICULTY_TYPES.MEDIUM);
+    for(let i=0; i<6; i++) spawnCreature(DIFFICULTY_TYPES.EASY);
+    for(let i=0; i<3; i++) spawnCreature(DIFFICULTY_TYPES.MEDIUM);
     for(let i=0; i<2; i++) spawnCreature(DIFFICULTY_TYPES.HARD);
 }
 
